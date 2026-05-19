@@ -7,175 +7,220 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="/css/style.css">
-    <style>
-        .cart-page {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 3rem;
-            padding-top: 10rem;
-        }
-
-        .cart-items {
-            background: white;
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: var(--shadow-soft);
-        }
-
-        .cart-item {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            padding: 1.5rem 0;
-            border-bottom: 1px solid #F1F5F9;
-        }
-
-        .cart-item:last-child { border-bottom: none; }
-
-        .cart-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            background: var(--light-gray);
-            border-radius: 12px;
-            padding: 1rem;
-        }
-
-        .item-info { flex: 1; }
-        .item-info h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
-        .item-info p { color: var(--muted-text); font-size: 0.9rem; }
-
-        .item-quantity {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            background: var(--light-gray);
-            padding: 0.5rem 1rem;
-            border-radius: 50px;
-        }
-
-        .qty-btn { cursor: pointer; border: none; background: transparent; font-weight: bold; }
-
-        .item-price { font-weight: 700; font-size: 1.1rem; width: 100px; text-align: right; }
-
-        .cart-summary {
-            background: white;
-            border-radius: 24px;
-            padding: 2rem;
-            box-shadow: var(--shadow-soft);
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-        }
-
-        .summary-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-            color: var(--muted-text);
-        }
-
-        .summary-total {
-            border-top: 1px solid #F1F5F9;
-            padding-top: 1.5rem;
-            margin-top: 1.5rem;
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--dark-text);
-        }
-
-        @media (max-width: 992px) {
-            .cart-page { grid-template-columns: 1fr; }
-        }
-    </style>
 </head>
 <body>
-    <nav class="navbar glass scrolled">
-        <a href="index.html" class="logo">ElectroCompare</a>
-        <div class="nav-links">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="products.html" class="nav-item">Products</a>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <nav class="navbar glass scrolled" id="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo">ELECTRO<span>COMPARE</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="products.html" class="nav-item">Products</a>
+                <a href="compare.html" class="nav-item">Compare</a>
+            </div>
         </div>
         <div class="nav-actions">
+            <a href="wishlist.html" class="nav-item"><i data-lucide="heart"></i></a>
             <a href="cart.html" class="cart-icon" style="color: var(--sky-blue)">
                 <i data-lucide="shopping-cart"></i>
-                <span class="cart-count">2</span>
+                <span class="cart-count">0</span>
             </a>
-            <a href="login.html" class="btn btn-primary">Account</a>
+            <a href="login.html" class="btn btn-primary">Login</a>
+            <a href="register.html" class="btn btn-outline">Join Now</a>
         </div>
     </nav>
 
-    <div class="section-padding cart-page">
-        <div class="cart-items">
-            <h3>Your Shopping Cart (2 items)</h3>
-            
-            <div class="cart-item">
-                <img src="https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/iphone-15-pro-max.png" alt="Item" referrerpolicy="no-referrer">
-                <div class="item-info">
-                    <h4>iPhone 15 Pro</h4>
-                    <p>Natural Titanium, 256GB</p>
-                    <span style="color: #EF4444; font-size: 0.8rem; cursor: pointer;">Remove</span>
-                </div>
-                <div class="item-quantity">
-                    <button class="qty-btn">-</button>
-                    <span>1</span>
-                    <button class="qty-btn">+</button>
-                </div>
-                <div class="item-price">₹1,34,900</div>
-            </div>
-
-            <div class="cart-item">
-                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=600" alt="Item" referrerpolicy="no-referrer">
-                <div class="item-info">
-                    <h4>XPS 15 Premium</h4>
-                    <p>Intel Core i9, 32GB RAM</p>
-                    <span style="color: #EF4444; font-size: 0.8rem; cursor: pointer;">Remove</span>
-                </div>
-                <div class="item-quantity">
-                    <button class="qty-btn">-</button>
-                    <span>1</span>
-                    <button class="qty-btn">+</button>
-                </div>
-                <div class="item-price">₹1,44,900</div>
-            </div>
-            
-            <div style="margin-top: 2rem;">
-                <a href="products.html" style="display: flex; align-items: center; gap: 0.5rem; color: var(--sky-blue); font-weight: 500;">
+    <div class="section-padding cart-page" style="padding-bottom: 6rem;">
+        <div class="cart-items" id="cartItemsContainer">
+            <h3 style="font-size: 1.5rem; margin-bottom: 2rem; color: var(--dark-text); font-weight: 700;">Your Shopping Cart (<span id="cartHeaderCount">0</span> items)</h3>
+            <div id="cartItemList"></div>
+            <div style="margin-top: 2rem;" id="continueShopping">
+                <a href="products.html" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--sky-blue); font-weight: 600; text-decoration: none; padding: 0.5rem 1rem; background: rgba(96, 165, 250, 0.1); border-radius: 8px; transition: all 0.3s ease;" onmouseover="this.style.background='rgba(96, 165, 250, 0.2)'" onmouseout="this.style.background='rgba(96, 165, 250, 0.1)'">
                     <i data-lucide="arrow-left" size="18"></i> Continue Shopping
                 </a>
             </div>
         </div>
 
-        <div class="cart-summary">
+        <div class="cart-summary" id="cartSummaryBox">
             <h3>Order Summary</h3>
-            <div style="margin-top: 2rem;">
+            <div class="promo-code-container">
+                <input type="text" id="promoInput" class="promo-input" placeholder="Promo Code">
+                <button class="promo-btn" onclick="applyPromoCode()">Apply</button>
+            </div>
+            <div id="promoMessage" style="font-size: 0.85rem; margin-bottom: 1rem; display: none;"></div>
+
+            <div style="margin-top: 1.5rem;">
                 <div class="summary-row">
                     <span>Subtotal</span>
-                    <span>₹2,79,800</span>
+                    <span id="subtotalDisplay">₹0</span>
                 </div>
                 <div class="summary-row">
                     <span>Shipping</span>
-                    <span>Free</span>
+                    <span style="color: #10B981; font-weight: 600;">Free</span>
                 </div>
                 <div class="summary-row">
                     <span>Tax (Est. 12%)</span>
-                    <span>₹33,576</span>
+                    <span id="taxDisplay">₹0</span>
                 </div>
-                <div class="summary-row summary-total">
-                    <span>Total</span>
-                    <span>₹3,13,376</span>
+                <div class="summary-row summary-total" style="flex-direction: column;">
+                    <div style="display: flex; justify-content: space-between; width: 100%;">
+                        <span>Total</span>
+                        <div style="text-align: right;">
+                            <span id="originalTotalDisplay" style="display: none; text-decoration: line-through; color: var(--muted-text); font-size: 1rem; margin-right: 0.5rem;"></span>
+                            <span id="totalDisplay">₹0</span>
+                        </div>
+                    </div>
                 </div>
-                <button class="btn btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.2rem;">Proceed to Checkout</button>
-                
-                <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 1rem; opacity: 0.5;">
-                    <i data-lucide="shield-check"></i>
-                    <span style="font-size: 0.8rem;">Secure SSL Encryption</span>
+                <a href="checkout.html" class="btn btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.2rem; font-size: 1.1rem; text-decoration: none; text-align: center; display: inline-block;">Proceed to Checkout</a>
+                <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--muted-text);">
+                    <i data-lucide="shield-check" size="18" style="color: #10B981;"></i>
+                    <span style="font-size: 0.85rem; font-weight: 500;">Secure SSL Encryption</span>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="/js/data.js"></script>
     <script src="/js/script.js"></script>
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+
+        let isPromoApplied = false;
+        const formatCurrency = (num) => '₹' + num.toLocaleString('en-IN');
+        
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if(!container) return;
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icon = type === 'error' ? 'alert-circle' : 'check-circle';
+            toast.innerHTML = `<i data-lucide="${icon}"></i><div class="toast-message">${message}</div>`;
+            container.appendChild(toast);
+            lucide.createIcons();
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3000);
+        }
+
+        function renderCart() {
+            const list = document.getElementById('cartItemList');
+            list.innerHTML = '';
+            let subtotal = 0;
+            let itemCount = 0;
+
+            if (window.electroCart.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            window.electroCart.forEach(cartItem => {
+                const product = window.productsData[cartItem.id];
+                if(!product) return;
+                subtotal += (product.price * cartItem.qty);
+                itemCount += cartItem.qty;
+
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'cart-item';
+                itemDiv.innerHTML = `
+                    <img src="${product.image}" alt="${product.title}" referrerpolicy="no-referrer">
+                    <div class="item-info">
+                        <h4>${product.title}</h4>
+                        <p>${product.brand}</p>
+                        <span class="remove-btn" onclick="removeItem('${cartItem.id}', this)"><i data-lucide="trash-2" size="14"></i> Remove</span>
+                    </div>
+                    <div class="item-quantity">
+                        <button class="qty-btn" onclick="updateQty('${cartItem.id}', -1)">-</button>
+                        <span class="qty-display">${cartItem.qty}</span>
+                        <button class="qty-btn" onclick="updateQty('${cartItem.id}', 1)">+</button>
+                    </div>
+                    <div class="item-price">${formatCurrency(product.price * cartItem.qty)}</div>
+                `;
+                list.appendChild(itemDiv);
+            });
+
+            document.getElementById('cartHeaderCount').innerText = itemCount;
+            const tax = Math.round(subtotal * 0.12);
+            let total = subtotal + tax;
+
+            document.getElementById('subtotalDisplay').innerText = formatCurrency(subtotal);
+            document.getElementById('taxDisplay').innerText = formatCurrency(tax);
+            
+            const origDisplay = document.getElementById('originalTotalDisplay');
+            if (isPromoApplied) {
+                origDisplay.innerText = formatCurrency(total);
+                origDisplay.style.display = 'inline-block';
+                total = 0;
+            } else {
+                origDisplay.style.display = 'none';
+            }
+
+            document.getElementById('totalDisplay').innerText = formatCurrency(total);
+            lucide.createIcons();
+        }
+
+        function updateQty(id, change) {
+            const item = window.electroCart.find(i => i.id === id);
+            if (item) {
+                item.qty += change;
+                if(item.qty < 1) item.qty = 1;
+                if(item.qty > 10) item.qty = 10;
+                localStorage.setItem('electro_cart', JSON.stringify(window.electroCart));
+                window.updateCartBadge();
+                renderCart();
+            }
+        }
+
+        function removeItem(id, btn) {
+            const itemElement = btn.closest('.cart-item');
+            itemElement.classList.add('fade-out-up-active');
+            
+            setTimeout(() => {
+                window.electroCart = window.electroCart.filter(i => i.id !== id);
+                localStorage.setItem('electro_cart', JSON.stringify(window.electroCart));
+                window.updateCartBadge();
+                renderCart();
+            }, 400); 
+        }
+
+        function applyPromoCode() {
+            const input = document.getElementById('promoInput');
+            const code = input.value.trim().toUpperCase();
+            const msgBox = document.getElementById('promoMessage');
+
+            if (code === 'WEBTECH100' || code === 'NAMRATAMAM100') {
+                isPromoApplied = true;
+                msgBox.innerText = '100% Discount Applied!';
+                msgBox.style.color = '#10B981';
+                msgBox.style.display = 'block';
+                input.disabled = true;
+                document.querySelector('.promo-btn').disabled = true;
+                showToast('Promo code applied successfully!', 'success');
+                renderCart();
+            } else if (code !== '') {
+                showToast('Invalid promo code.', 'error');
+                msgBox.innerText = 'Invalid promo code.';
+                msgBox.style.color = '#EF4444';
+                msgBox.style.display = 'block';
+            }
+        }
+
+        function showEmptyState() {
+            const container = document.getElementById('cartItemsContainer');
+            container.innerHTML = `
+                <div class="empty-state fade-out-up-active" style="animation-direction: reverse;">
+                    <div class="empty-state-icon">
+                        <i data-lucide="shopping-cart" size="40"></i>
+                    </div>
+                    <h3>Your cart is empty</h3>
+                    <p>Looks like you haven't added anything to your cart yet.</p>
+                    <a href="products.html" class="btn btn-primary">Start Shopping</a>
+                </div>
+            `;
+            document.getElementById('cartSummaryBox').style.display = 'none';
+            lucide.createIcons();
+        }
+
+        renderCart();
+    </script>
 </body>
 </html>

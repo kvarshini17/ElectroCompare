@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile | ElectroCompare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar glass" id="navbar">
+        <div class="nav-left">
+            <div class="logo">ELECTRO<span>COMPARE</span></div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="products.html" class="nav-item">Products</a>
+                <a href="compare.html" class="nav-item">Compare</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <i data-lucide="search" size="18"></i>
+            <input type="text" placeholder="Search gadgets, brands...">
+        </div>
+
+        <div class="nav-actions">
+            <a href="wishlist.html" class="nav-item"><i data-lucide="heart"></i></a>
+            <a href="cart.html" class="cart-icon">
+                <i data-lucide="shopping-cart"></i>
+                <span class="cart-count">3</span>
+            </a>
+            <!-- Logged in state -->
+            <a href="#" class="nav-item" style="color: var(--sky-blue); font-weight: 600;"><i data-lucide="user"></i> My Profile</a>
+            <a href="#" id="logoutBtn" class="btn btn-outline" style="padding: 0.5rem 1rem;">Logout</a>
+        </div>
+    </nav>
+
+    <main class="profile-container">
+        <div class="profile-header">
+            <div class="profile-avatar">
+                JD
+            </div>
+            <div class="profile-title">
+                <h1 id="profileName">John Doe</h1>
+                <p>Member since May 2026</p>
+            </div>
+        </div>
+
+        <div class="profile-grid">
+            <div class="profile-sidebar">
+                <div class="profile-card">
+                    <h3><i data-lucide="zap"></i> Quick Actions</h3>
+                    <div style="display: flex; flex-direction: column; gap: 1rem;">
+                        <button class="btn btn-outline" style="width: 100%; justify-content: center;"><i data-lucide="edit-2" size="16"></i> Edit Profile</button>
+                        <button class="btn btn-outline" style="width: 100%; justify-content: center;"><i data-lucide="key" size="16"></i> Change Password</button>
+                        <button class="btn btn-primary" id="signoutBtn" style="width: 100%; justify-content: center; background: #EF4444; border: none;"><i data-lucide="log-out" size="16"></i> Sign Out</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-main">
+                <div class="profile-tabs">
+                    <button class="tab-btn active" onclick="switchTab('overview', this)">Overview</button>
+                    <button class="tab-btn" onclick="switchTab('gadgets', this)">My Gadgets</button>
+                    <button class="tab-btn" onclick="switchTab('settings', this)">Settings</button>
+                </div>
+
+                <div id="overview" class="tab-content active">
+                    <div class="profile-card" style="margin-bottom: 2rem;">
+                        <h3><i data-lucide="user-check"></i> Account Details</h3>
+                        <div class="info-grid">
+                            <div class="info-grid-item">
+                                <i data-lucide="user" class="info-icon"></i>
+                                <div class="info-data">
+                                    <label>Full Name</label>
+                                    <span id="displayFullName">John Doe</span>
+                                </div>
+                            </div>
+                            <div class="info-grid-item">
+                                <i data-lucide="mail" class="info-icon"></i>
+                                <div class="info-data">
+                                    <label>Email Address</label>
+                                    <span id="displayEmail">john.doe@example.com</span>
+                                </div>
+                            </div>
+                            <div class="info-grid-item">
+                                <i data-lucide="phone" class="info-icon"></i>
+                                <div class="info-data">
+                                    <label>Phone Number</label>
+                                    <span id="displayPhone">+1 (555) 123-4567</span>
+                                </div>
+                            </div>
+                            <div class="info-grid-item">
+                                <i data-lucide="map-pin" class="info-icon"></i>
+                                <div class="info-data">
+                                    <label>Shipping Address</label>
+                                    <span id="displayAddress">123 Tech Avenue, Silicon Valley, CA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="profile-card">
+                        <h3><i data-lucide="activity"></i> Recent Activity</h3>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i data-lucide="shopping-bag"></i></div>
+                            <div class="activity-details">
+                                <h4>Order #EC-8842</h4>
+                                <p>Placed on May 18, 2026 • Delivered</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i data-lucide="heart"></i></div>
+                            <div class="activity-details">
+                                <h4>Added to Wishlist</h4>
+                                <p>Sony WH-1000XM5 Headphones</p>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon"><i data-lucide="message-square"></i></div>
+                            <div class="activity-details">
+                                <h4>Left a Review</h4>
+                                <p>Apple MacBook Pro 16" (M3 Max)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="gadgets" class="tab-content">
+                    <div class="profile-card">
+                        <h3><i data-lucide="cpu"></i> Saved for Comparison</h3>
+                        <p style="color: var(--muted-text); margin-bottom: 1.5rem; font-size: 0.95rem;">Your personal arsenal of gadgets you're keeping an eye on.</p>
+                        
+                        <div class="gadget-grid">
+                            <div class="gadget-card">
+                                <img src="https://images.unsplash.com/photo-1593640408182-31c70c8268f5?w=300" class="gadget-img" alt="Laptop">
+                                <h4>Dell XPS 15</h4>
+                                <div class="price">$1,499</div>
+                                <button class="btn btn-outline" style="width: 100%; font-size: 0.85rem; padding: 0.5rem;">Compare</button>
+                            </div>
+                            <div class="gadget-card">
+                                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=300" class="gadget-img" alt="Phone">
+                                <h4>iPhone 15 Pro</h4>
+                                <div class="price">$999</div>
+                                <button class="btn btn-outline" style="width: 100%; font-size: 0.85rem; padding: 0.5rem;">Compare</button>
+                            </div>
+                            <div class="gadget-card">
+                                <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?w=300" class="gadget-img" alt="Headphones">
+                                <h4>Sony WH-1000XM5</h4>
+                                <div class="price">$398</div>
+                                <button class="btn btn-outline" style="width: 100%; font-size: 0.85rem; padding: 0.5rem;">Compare</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="settings" class="tab-content">
+                    <div class="profile-card">
+                        <h3><i data-lucide="settings"></i> Account Settings</h3>
+                        <p style="color: var(--muted-text);">Settings panel coming soon. You can edit your preferences, notification settings, and privacy controls here.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        // Tab Switching Logic
+        function switchTab(tabId, btn) {
+            // Remove active class from all contents and buttons
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            
+            // Add active class to target content and button
+            document.getElementById(tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        // Check login status
+        document.addEventListener('DOMContentLoaded', () => {
+            const userStr = localStorage.getItem('electroUser');
+            
+            if (!userStr) {
+                // Redirect to login if not logged in
+                window.location.href = 'login.html';
+                return;
+            }
+
+            const user = JSON.parse(userStr);
+
+            // Populate mock user data if available
+            if (user.firstName && user.lastName) {
+                const fullName = `${user.firstName} ${user.lastName}`;
+                document.getElementById('profileName').textContent = fullName;
+                document.getElementById('displayFullName').textContent = fullName;
+                
+                // Set Avatar Initials
+                const initials = user.firstName.charAt(0) + user.lastName.charAt(0);
+                document.querySelector('.profile-avatar').textContent = initials.toUpperCase();
+            }
+            
+            if (user.email) document.getElementById('displayEmail').textContent = user.email;
+            if (user.phone) document.getElementById('displayPhone').textContent = user.phone;
+            if (user.address) document.getElementById('displayAddress').textContent = user.address;
+        });
+
+        // Logout functionality
+        const logoutBtn = document.getElementById('logoutBtn');
+        const signoutBtn = document.getElementById('signoutBtn');
+        
+        function handleLogout(e) {
+            e.preventDefault();
+            localStorage.removeItem('electroUser');
+            window.location.href = 'login.html';
+        }
+
+        if (logoutBtn) logoutBtn.addEventListener('click', handleLogout);
+        if (signoutBtn) signoutBtn.addEventListener('click', handleLogout);
+    </script>
+</body>
+</html>

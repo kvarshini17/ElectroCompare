@@ -7,13 +7,145 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .wishlist-hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 4rem 3rem;
+            border-radius: 24px;
+            margin-bottom: 3rem;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+
+        .wishlist-hero:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 30px 60px rgba(15, 23, 42, 0.3);
+        }
+
+        .wishlist-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+            animation: pulse 4s infinite alternate ease-in-out;
+        }
+
+        .wishlist-hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(239,68,68,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .wishlist-text-wrapper {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            display: block;
+        }
+
+        .hero-icon-box {
+            width: 80px;
+            height: 80px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            z-index: 1;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            flex-shrink: 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .wishlist-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: white;
+        }
+
+        .wishlist-hero p {
+            color: #94a3b8;
+            font-size: 1.1rem;
+            font-weight: 400;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
+        .hero-eyebrow {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(56, 189, 248, 0.1);
+            color: #38bdf8;
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-stats {
+            margin-top: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: #38bdf8;
+            font-weight: 500;
+            background: rgba(15, 23, 42, 0.5);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            width: fit-content;
+        }
+        
+        .hero-stats i {
+            width: 16px;
+            height: 16px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.7; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar glass scrolled">
-        <a href="index.html" class="logo">ElectroCompare</a>
-        <div class="nav-links">
-            <a href="index.html" class="nav-item">Home</a>
-            <a href="products.html" class="nav-item">Products</a>
+    <div id="toastContainer" class="toast-container"></div>
+
+    <nav class="navbar glass scrolled" id="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo">ELECTRO<span>COMPARE</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="products.html" class="nav-item">Products</a>
+            </div>
         </div>
         <div class="nav-actions">
             <a href="wishlist.html" class="nav-item" style="color: var(--sky-blue)"><i data-lucide="heart"></i></a>
@@ -21,40 +153,145 @@
                 <i data-lucide="shopping-cart"></i>
                 <span class="cart-count">0</span>
             </a>
-            <a href="login.html" class="btn btn-primary">Login</a>
+            <a href="login.html" class="btn btn-outline">Login</a>
         </div>
     </nav>
 
-    <div class="section-padding" style="padding-top: 10rem; min-height: 80vh;">
-        <div class="section-header">
-            <h2>Your Wishlist</h2>
-            <p>Save your favorite gadgets and get notified when prices drop.</p>
-        </div>
-
-        <div class="product-grid">
-            <!-- Sample Wishlist Item -->
-            <div class="product-card">
-                <div class="product-image">
-                    <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=800" alt="Headphones" referrerpolicy="no-referrer">
-                </div>
-                <div class="product-info">
-                    <span class="brand">Sony</span>
-                    <h3>WH-1000XM5</h3>
-                    <div class="price-row">
-                        <span class="price">₹29,990</span>
-                        <button class="action-btn" style="color: #EF4444;"><i data-lucide="trash-2" size="18"></i></button>
-                    </div>
-                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem">Move to Cart</button>
+    <div class="section-padding" style="padding-top: 120px; max-width: 1200px; margin: 0 auto;">
+        
+        <div class="wishlist-hero">
+            <div class="hero-icon-box">
+                <i data-lucide="heart" size="36" color="#EF4444" fill="rgba(239,68,68,0.2)"></i>
+            </div>
+            <div class="wishlist-text-wrapper">
+                <span class="hero-eyebrow">✨ Wishlist Page</span>
+                <h1>My Wishlist</h1>
+                <p>Curate your dream tech setup. Keep track of the gadgets you love and grab them when you're ready.</p>
+                <div class="hero-stats">
+                    <span id="wishlistCountText">Loading...</span>
                 </div>
             </div>
         </div>
-        
-        <div style="text-align: center; margin-top: 5rem;">
-            <a href="products.html" class="btn btn-outline">Explore More Gadgets</a>
+
+        <div id="wishlistContent">
+            <div class="product-grid" id="wishlistGrid">
+                <!-- Items dynamically injected -->
+            </div>
         </div>
+
     </div>
 
+    <script src="/js/data.js"></script>
     <script src="/js/script.js"></script>
-    <script>lucide.createIcons();</script>
+    <script>
+        lucide.createIcons();
+        const formatCurrency = (num) => '₹' + num.toLocaleString('en-IN');
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if(!container) return;
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icon = type === 'error' ? 'alert-circle' : 'check-circle';
+            toast.innerHTML = `<i data-lucide="${icon}"></i><div class="toast-message">${message}</div>`;
+            container.appendChild(toast);
+            lucide.createIcons();
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3000);
+        }
+
+        function renderWishlist() {
+            const grid = document.getElementById('wishlistGrid');
+            const countText = document.getElementById('wishlistCountText');
+            const wishlistIds = window.electroWishlist || [];
+            
+            // Update the banner stats
+            if (countText) {
+                if (wishlistIds.length === 0) {
+                    countText.textContent = "Your collection is currently empty.";
+                } else if (wishlistIds.length === 1) {
+                    countText.textContent = "You have 1 item saved.";
+                } else {
+                    countText.textContent = `You have ${wishlistIds.length} items saved.`;
+                }
+            }
+
+            grid.innerHTML = '';
+            
+            if (wishlistIds.length === 0) {
+                showEmptyState();
+                return;
+            }
+
+            window.electroWishlist.forEach(id => {
+                const product = window.productsData[id];
+                if(!product) return;
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${product.image}" alt="${product.title}" referrerpolicy="no-referrer">
+                        <button class="action-btn" style="position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,0.9); border: none;" onclick="removeWishlistItem('${id}', this)">
+                            <i data-lucide="trash-2" size="18" color="#EF4444"></i>
+                        </button>
+                    </div>
+                    <div class="product-info">
+                        <span class="brand">${product.brand}</span>
+                        <h3>${product.title}</h3>
+                        <div class="price-row" style="margin-top: 1rem;">
+                            <span class="price">${formatCurrency(product.price)}</span>
+                        </div>
+                        <button class="action-btn btn-cart" style="width:100%; margin-top:1rem" onclick="moveToCart('${id}', this)">Move to Cart</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function removeWishlistItem(id, btn) {
+            const card = btn.closest('.product-card');
+            card.classList.add('fade-out-up-active');
+            
+            setTimeout(() => {
+                window.electroWishlist = window.electroWishlist.filter(item => item !== id);
+                localStorage.setItem('electro_wishlist', JSON.stringify(window.electroWishlist));
+                window.updateCartBadge();
+                renderWishlist();
+            }, 400);
+        }
+
+        function moveToCart(id, btn) {
+            const card = btn.closest('.product-card');
+            card.classList.add('fade-out-up-active');
+            
+            setTimeout(() => {
+                // Add to cart
+                window.globalAddToCart(id);
+                // Remove from wishlist
+                window.electroWishlist = window.electroWishlist.filter(item => item !== id);
+                localStorage.setItem('electro_wishlist', JSON.stringify(window.electroWishlist));
+                renderWishlist();
+            }, 400);
+        }
+
+        function showEmptyState() {
+            const container = document.getElementById('wishlistContent');
+            container.innerHTML = `
+                <div class="empty-state fade-out-up-active" style="animation-direction: reverse;">
+                    <div class="empty-state-icon">
+                        <i data-lucide="heart" size="40"></i>
+                    </div>
+                    <h3>Your wishlist is empty</h3>
+                    <p>Save items you like to review them later.</p>
+                    <a href="products.html" class="btn btn-primary">Discover Products</a>
+                </div>
+            `;
+            lucide.createIcons();
+        }
+
+        renderWishlist();
+    </script>
 </body>
 </html>

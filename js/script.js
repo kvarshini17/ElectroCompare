@@ -2,6 +2,132 @@
   Global Script for ElectroCompare
 */
 
+// Global State Management
+window.electroCart = JSON.parse(localStorage.getItem('electro_cart')) || [];
+window.electroWishlist = JSON.parse(localStorage.getItem('electro_wishlist')) || [];
+window.electroCompare = JSON.parse(localStorage.getItem('electro_compare')) || [];
+
+window.updateCartBadge = function() {
+    const badges = document.querySelectorAll('.cart-count');
+    // Ensure we filter out any bad items or parse properly to prevent NaN
+    const validItems = window.electroCart.filter(item => item && item.id);
+    const totalItems = validItems.reduce((sum, item) => sum + (parseInt(item.qty) || 1), 0);
+    badges.forEach(badge => {
+        badge.textContent = totalItems;
+    });
+};
+
+window.globalAddToCart = function(productId, btnElement) {
+    if(typeof event !== 'undefined' && event) event.stopPropagation();
+    
+    // Check for corrupt data and fix it if needed
+    window.electroCart = window.electroCart.filter(item => item && item.id);
+    
+    const existing = window.electroCart.find(i => i.id === productId);
+    if (existing) {
+        existing.qty = (parseInt(existing.qty) || 1) + 1;
+    } else {
+        window.electroCart.push({ id: productId, qty: 1 });
+    }
+    localStorage.setItem('electro_cart', JSON.stringify(window.electroCart));
+    window.updateCartBadge();
+    
+    if (btnElement) {
+        const originalText = btnElement.innerHTML;
+        btnElement.innerHTML = 'Added!';
+        btnElement.style.backgroundColor = '#10B981';
+        btnElement.style.color = 'white';
+        setTimeout(() => {
+            btnElement.innerHTML = originalText;
+            btnElement.style.backgroundColor = '';
+            btnElement.style.color = '';
+            if(typeof lucide !== 'undefined') lucide.createIcons();
+        }, 2000);
+    }
+    
+    if (typeof showToast === 'function') {
+        showToast('Added to cart!', 'success');
+    }
+};
+
+window.globalAddToWishlist = function(productId, btnElement) {
+    if(typeof event !== 'undefined' && event) event.stopPropagation();
+    const index = window.electroWishlist.indexOf(productId);
+    
+    if (index === -1) {
+        window.electroWishlist.push(productId);
+        localStorage.setItem('electro_wishlist', JSON.stringify(window.electroWishlist));
+        
+        if (btnElement) {
+            const icon = btnElement.querySelector('svg') || btnElement.querySelector('i');
+            if (icon) {
+                icon.setAttribute('fill', '#EF4444');
+                icon.setAttribute('color', '#EF4444');
+                icon.style.fill = '#EF4444';
+                icon.style.color = '#EF4444';
+            }
+        }
+        if (typeof showToast === 'function') {
+            showToast('Added to wishlist!', 'success');
+        }
+    } else {
+        window.electroWishlist.splice(index, 1);
+        localStorage.setItem('electro_wishlist', JSON.stringify(window.electroWishlist));
+        
+        if (btnElement) {
+            const icon = btnElement.querySelector('svg') || btnElement.querySelector('i');
+            if (icon) {
+                icon.setAttribute('fill', 'none');
+                icon.setAttribute('color', 'currentColor');
+                icon.style.fill = 'none';
+                icon.style.color = 'currentColor';
+            }
+        }
+        if (typeof showToast === 'function') {
+            showToast('Removed from wishlist.', 'success');
+        }
+    }
+};
+
+window.globalToggleCompare = function(productId, btnElement) {
+    if(typeof event !== 'undefined' && event) event.stopPropagation();
+    const index = window.electroCompare.indexOf(productId);
+    
+    if (index === -1) {
+        if (window.electroCompare.length >= 4) {
+            if (typeof showToast === 'function') showToast('You can compare up to 4 items max.', 'error');
+            return;
+        }
+        window.electroCompare.push(productId);
+        localStorage.setItem('electro_compare', JSON.stringify(window.electroCompare));
+        
+        if (btnElement) {
+            btnElement.classList.add('active');
+            btnElement.style.backgroundColor = 'var(--sky-blue)';
+            btnElement.style.color = 'white';
+            const icon = btnElement.querySelector('svg') || btnElement.querySelector('i');
+            if(icon) {
+                icon.style.color = 'white';
+            }
+        }
+        if (typeof showToast === 'function') showToast('Added to comparison!', 'success');
+    } else {
+        window.electroCompare.splice(index, 1);
+        localStorage.setItem('electro_compare', JSON.stringify(window.electroCompare));
+        
+        if (btnElement) {
+            btnElement.classList.remove('active');
+            btnElement.style.backgroundColor = '';
+            btnElement.style.color = '';
+            const icon = btnElement.querySelector('svg') || btnElement.querySelector('i');
+            if(icon) {
+                icon.style.color = 'currentColor';
+            }
+        }
+        if (typeof showToast === 'function') showToast('Removed from comparison.', 'success');
+    }
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // Sticky Navbar on Scroll
     const navbar = document.getElementById('navbar');
@@ -87,51 +213,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Cart Count Simulation (Real persistence would involve LocalStorage or Database)
-    let cart = JSON.parse(localStorage.getItem('electro_cart')) || [];
-    updateCartBadge();
+    window.updateCartBadge();
 
-    function updateCartBadge() {
-        const badges = document.querySelectorAll('.cart-count');
-        badges.forEach(badge => {
-            badge.textContent = cart.length;
-        });
-    }
-
-    // Add to Cart Buttons
-    document.querySelectorAll('.btn-cart').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            const card = e.target.closest('.product-card');
-            const name = card.querySelector('h3').textContent;
-            const price = card.querySelector('.price').textContent;
-            
-            cart.push({ name, price });
-            localStorage.setItem('electro_cart', JSON.stringify(cart));
-            updateCartBadge();
-            
-            // Minimal animation feedback
-            btn.textContent = 'Added!';
-            btn.style.backgroundColor = '#10B981'; // Green
-            setTimeout(() => {
-                btn.textContent = 'Add to Cart';
-                btn.style.backgroundColor = '';
-            }, 2000);
-        });
-    });
-
-    // Compare functionality preview
-    document.querySelectorAll('.btn-compare').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-            btn.classList.toggle('active');
-            if (btn.classList.contains('active')) {
-                btn.style.backgroundColor = 'var(--sky-blue)';
-                btn.style.color = 'white';
-            } else {
-                btn.style.backgroundColor = '';
-                btn.style.color = '';
-            }
-        });
-    });
+    // The compare logic is now handled by globalToggleCompare. We can remove the old logic.
+    // document.querySelectorAll('.btn-compare').forEach(...)
 
     // Product Filtering Logic
     const productContainer = document.getElementById('productContainer');
@@ -189,5 +274,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Initial trigger
         filterProducts();
+    }
+
+    // Global Auth State UI Update
+    const userStr = localStorage.getItem('electroUser');
+    if (userStr) {
+        const navActions = document.querySelector('.nav-actions');
+        // Don't modify if we're on login or register page
+        const isAuthPage = window.location.pathname.includes('login.html') || window.location.pathname.includes('register.html');
+        
+        if (navActions && !window.location.pathname.includes('profile.html') && !isAuthPage) {
+            // Find login and register buttons (could be btn-primary or nav-item depending on page)
+            const loginBtn = navActions.querySelector('a[href="login.html"]');
+            const registerBtn = navActions.querySelector('a[href="register.html"]');
+            
+            if (loginBtn) loginBtn.remove();
+            if (registerBtn) registerBtn.remove();
+
+            // Add Profile and Logout buttons
+            if (!navActions.querySelector('a[href="profile.html"]')) {
+                const profileLink = document.createElement('a');
+                profileLink.href = 'profile.html';
+                profileLink.className = 'nav-item';
+                profileLink.style.cssText = 'color: var(--sky-blue); font-weight: 600;';
+                profileLink.innerHTML = '<i data-lucide="user"></i> My Profile';
+                
+                const logoutBtn = document.createElement('a');
+                logoutBtn.href = '#';
+                logoutBtn.className = 'btn btn-outline';
+                logoutBtn.style.padding = '0.5rem 1rem';
+                logoutBtn.textContent = 'Logout';
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.removeItem('electroUser');
+                    window.location.reload();
+                });
+
+                navActions.appendChild(profileLink);
+                navActions.appendChild(logoutBtn);
+                if (typeof lucide !== 'undefined') lucide.createIcons();
+            }
+        }
     }
 });

@@ -1,116 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - TechCompare</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        .details-container {
-            max-width: 1200px;
-            margin: 100px auto 50px;
-            padding: 0 20px;
-        }
-        .product-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            margin-bottom: 50px;
-        }
-        @media (max-width: 768px) {
-            .product-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        .product-gallery img {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-        }
-        .spec-list {
-            list-style: none;
-            padding: 0;
-            margin-top: 20px;
-        }
-        .spec-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .spec-label {
-            font-weight: 600;
-            color: #666;
-        }
-        .price-large {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin: 20px 0;
-        }
-        .action-bars {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-    </style>
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <i data-lucide="cpu"></i>
-                <span>TechCompare</span>
-            </a>
+    <nav class="navbar glass" id="navbar">
+        <div class="nav-left">
+            <div class="logo">ELECTRO<span>COMPARE</span></div>
             <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="products.html">Products</a>
-                <a href="compare.html">Compare</a>
-                <a href="reviews.html">Reviews</a>
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="products.html" class="nav-item">Products</a>
+                <a href="compare.html" class="nav-item">Compare</a>
+                <a href="contact.html" class="nav-item">Contact</a>
             </div>
-            <div class="nav-actions">
-                <button class="nav-btn"><i data-lucide="search"></i></button>
-                <button class="nav-btn"><i data-lucide="user"></i></button>
-                <button class="nav-btn cart-toggle"><i data-lucide="shopping-cart"></i><span class="cart-count">0</span></button>
-            </div>
+        </div>
+        
+        <div class="search-bar">
+            <i data-lucide="search" size="18"></i>
+            <input type="text" placeholder="Search gadgets, brands...">
+        </div>
+
+        <div class="nav-actions">
+            <a href="wishlist.html" class="nav-item"><i data-lucide="heart"></i></a>
+            <a href="cart.html" class="cart-icon">
+                <i data-lucide="shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="register.html" class="btn btn-primary">Join Now</a>
         </div>
     </nav>
 
-    <main class="details-container">
-        <div class="product-grid">
+    <main class="product-details-container">
+        <div class="product-detail-grid">
             <div class="product-gallery" id="productGallery">
-                <img id="mainImage" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1000" alt="Product" referrerpolicy="no-referrer">
-            </div>
-            <div class="product-content">
-                <span class="brand" id="productBrand" style="text-transform: uppercase; color: #666; letter-spacing: 1px; font-weight: 600;">Brand</span>
-                <h1 id="productTitle" style="font-size: 2.5rem; margin: 10px 0;">Product Name</h1>
-                <div class="rating" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
-                    <div id="productStars" style="display: flex; gap: 2px;"></div>
-                    <span id="reviewCount" style="color: #666;">(0 reviews)</span>
+                <div class="main-image-wrapper">
+                    <img id="mainImage"
+                        src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1000"
+                        alt="Product" referrerpolicy="no-referrer">
                 </div>
-                <div class="price-large" id="productPrice">₹0</div>
-                <p id="productDescription" style="line-height: 1.6; color: #444; margin-bottom: 30px;">
-                    Experience the next level of performance with cutting-edge technology and premium design features crafted for the modern era.
-                </p>
-                
-                <div class="action-bars">
-                    <button class="btn btn-primary" style="flex: 2; padding: 15px;">Add to Cart <i data-lucide="shopping-cart" style="margin-left: 10px;"></i></button>
-                    <button class="btn btn-outline" style="flex: 1; padding: 15px;"><i data-lucide="heart"></i></button>
-                    <button class="btn btn-outline" style="flex: 1; padding: 15px;"><i data-lucide="git-compare"></i></button>
+                <div class="thumbnail-gallery" id="thumbnailGallery">
+                    <!-- Thumbnails will be injected here -->
+                </div>
+            </div>
+
+            <div class="product-content-details">
+                <span class="brand" id="productBrand">Brand</span>
+                <h1 id="productTitle">Product Name</h1>
+
+                <div class="rating">
+                    <div id="productStars" style="display: flex; gap: 2px;"></div>
+                    <span id="reviewCount">(0 reviews)</span>
                 </div>
 
-                <div class="specs" style="margin-top: 40px;">
-                    <h3>Specifications</h3>
-                    <ul class="spec-list">
-                        <div id="specItems">
-                            <li class="spec-item"><span class="spec-label">Processor</span><span>Intel Core i9 13th Gen</span></li>
-                            <li class="spec-item"><span class="spec-label">Memory</span><span>32GB LPDDR5X</span></li>
-                            <li class="spec-item"><span class="spec-label">Storage</span><span>1TB SSD NVMe</span></li>
-                            <li class="spec-item"><span class="spec-label">Display</span><span>14.2" Liquid Retina XDR</span></li>
-                        </div>
-                    </ul>
+                <div class="price-large" id="productPrice">₹0</div>
+
+                <p class="product-description" id="productDescription">
+                    Experience the next level of performance with cutting-edge technology and premium design features
+                    crafted for the modern era.
+                </p>
+
+                <div class="variant-selector" id="variantSelector" style="display: none;">
+                    <h4 id="variantLabel">Select Option</h4>
+                    <div class="variant-options" id="variantOptions">
+                        <!-- Options injected here -->
+                    </div>
                 </div>
+
+                <div class="details-action-bars">
+                    <button class="btn btn-primary" id="addToCartBtn">
+                        Add to Cart <i data-lucide="shopping-cart"></i>
+                    </button>
+                    <button class="btn btn-outline" id="addToWishlistBtn" aria-label="Add to wishlist"><i data-lucide="heart"></i></button>
+                    <button class="btn btn-outline" id="addToCompareBtn" aria-label="Compare"><i data-lucide="git-compare"></i></button>
+                </div>
+
+                <div class="specs" style="margin-top: 2rem;">
+                    <h3 style="margin-bottom: 1.5rem; font-size: 1.5rem;">Specifications</h3>
+                    <div class="specs-grid" id="specItems">
+                        <!-- Specs injected here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-products">
+            <h2>You Might Also Like</h2>
+            <div class="product-grid" id="relatedProductsGrid">
+                <!-- Related products injected here -->
             </div>
         </div>
     </main>
@@ -119,99 +102,72 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div class="footer-info">
-                    <div class="logo" style="color: white">
+                    <div class="logo">
                         <i data-lucide="cpu"></i>
                         <span>TechCompare</span>
                     </div>
-                    <p style="margin-top: 1rem; color: #999">The ultimate destination for comparing and reviewing the latest tech gadgets.</p>
+                    <p style="margin-top: 1rem; color: var(--muted-text)">The ultimate destination for comparing and
+                        reviewing the latest tech gadgets.</p>
                 </div>
-                <div>
+                <div class="footer-links">
                     <h4>Explore</h4>
-                    <ul style="list-style: none; padding: 0; color: #999">
-                        <li>Laptops</li>
-                        <li>Smartphones</li>
-                        <li>Watches</li>
+                    <ul>
+                        <li><a href="#">Laptops</a></li>
+                        <li><a href="#">Smartphones</a></li>
+                        <li><a href="#">Watches</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="footer-links">
                     <h4>Company</h4>
-                    <ul style="list-style: none; padding: 0; color: #999">
-                        <li>About Us</li>
-                        <li>Contact</li>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact</a></li>
                     </ul>
                 </div>
-                <div>
+                <div class="newsletter">
                     <h4>Newsletter</h4>
-                    <div style="display: flex; margin-top: 1rem">
-                        <input type="email" placeholder="Email" style="padding: 0.5rem; border-radius: 4px 0 0 4px; border: none">
-                        <button class="btn-primary" style="padding: 0.5rem 1rem; border-radius: 0 4px 4px 0">Subscribe</button>
+                    <p>Get the latest updates and tech news.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Email address">
+                        <button class="btn btn-primary">Subscribe</button>
                     </div>
                 </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 TechCompare. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
+    <div id="toastContainer" class="toast-container"></div>
+    <script src="/js/data.js"></script>
+    <script src="/js/script.js"></script>
     <script>
         lucide.createIcons();
+        const formatCurrency = (num) => '₹' + num.toLocaleString('en-IN');
+        
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            if(!container) return;
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            const icon = type === 'error' ? 'alert-circle' : 'check-circle';
+            toast.innerHTML = `<i data-lucide="${icon}"></i><div class="toast-message">${message}</div>`;
+            container.appendChild(toast);
+            if(typeof lucide !== 'undefined') lucide.createIcons();
+            setTimeout(() => toast.classList.add('show'), 10);
+            setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3000);
+        }
 
-        // Sample Data Store
-        const productsData = {
-            "macbook-pro": {
-                title: "MacBook Pro 15",
-                brand: "Apple",
-                price: "₹1,59,900",
-                image: "https://macfinder.co.uk/wp-content/uploads/2022/12/img-MacBook-Pro-Retina-14-Inch-23934.jpg",
-                rating: 5,
-                reviews: 230,
-                description: "The M3 Max chip brings next-level performance to power through the most demanding workflows with up to 12.8x faster performance than Intel-based models.",
-                specs: [
-                    ["Processor", "Apple M3 Max"],
-                    ["Memory", "36GB Unified Memory"],
-                    ["Storage", "1TB SSD"],
-                    ["Display", "14.2-inch Liquid Retina XDR"]
-                ]
-            },
-            "iphone-16": {
-                title: "iPhone 16 Pro Max",
-                brand: "Apple",
-                price: "₹1,44,900",
-                image: "https://tse2.mm.bing.net/th/id/OIP.oNfJ_2c-Iu7-k_C6V2pLhAHaEK?pid=Api&P=0&h=180",
-                rating: 5,
-                reviews: 156,
-                description: "Built for Apple Intelligence. Titaniuim design. 48MP Fusion camera. And the A18 Pro chip.",
-                specs: [
-                    ["Processor", "A18 Pro Chip"],
-                    ["Camera", "48MP Main | 12MP Telephoto"],
-                    ["Display", "6.7-inch Super Retina XDR"],
-                    ["Battery", "Up to 29 hours video playback"]
-                ]
-            },
-            "s24-ultra": {
-                title: "Galaxy S24 Ultra",
-                brand: "Samsung",
-                price: "₹1,29,999",
-                image: "https://tse3.mm.bing.net/th/id/OIP.YYS_41HS6y8CsPagVmyF-gHaFl?pid=Api&P=0&h=180",
-                rating: 4,
-                reviews: 189,
-                description: "Galaxy AI is here. Welcome to the era of mobile AI. With S24 Ultra in your hands, you can unleash whole new levels of creativity.",
-                specs: [
-                    ["Processor", "Snapdragon 8 Gen 3"],
-                    ["RAM", "12GB"],
-                    ["Camera", "200MP Main Lens"],
-                    ["Display", "6.8-inch Dynamic AMOLED 2X"]
-                ]
-            }
-        };
 
-        // Populate page based on URL
         function populateDetails() {
             const params = new URLSearchParams(window.location.search);
             const productId = params.get('id') || 'macbook-pro';
-            const product = productsData[productId] || productsData['macbook-pro'];
+            const product = window.productsData[productId] || window.productsData['macbook-pro'];
 
             document.getElementById('productTitle').innerText = product.title;
             document.getElementById('productBrand').innerText = product.brand;
-            document.getElementById('productPrice').innerText = product.price;
+            document.getElementById('productPrice').innerText = formatCurrency(product.price);
             document.getElementById('mainImage').src = product.image;
             document.getElementById('productDescription').innerText = product.description;
             document.getElementById('reviewCount').innerText = `(${product.reviews} reviews)`;
@@ -223,20 +179,113 @@
                 const star = document.createElement('i');
                 star.setAttribute('data-lucide', 'star');
                 star.setAttribute('fill', i < product.rating ? '#FFB800' : 'none');
-                star.setAttribute('color', '#FFB800');
+                star.setAttribute('color', i < product.rating ? '#FFB800' : '#CBD5E1');
                 star.setAttribute('size', '18');
                 starContainer.appendChild(star);
+            }
+
+            // Images / Thumbnails
+            const thumbContainer = document.getElementById('thumbnailGallery');
+            thumbContainer.innerHTML = '';
+            if (product.images && product.images.length > 0) {
+                product.images.forEach((imgSrc, index) => {
+                    const thumb = document.createElement('div');
+                    thumb.className = `thumbnail ${index === 0 ? 'active' : ''}`;
+                    thumb.innerHTML = `<img src="${imgSrc}" alt="Thumbnail" referrerpolicy="no-referrer">`;
+                    thumb.onclick = () => {
+                        document.getElementById('mainImage').src = imgSrc;
+                        document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                        thumb.classList.add('active');
+                    };
+                    thumbContainer.appendChild(thumb);
+                });
+            } else {
+                const thumb = document.createElement('div');
+                thumb.className = 'thumbnail active';
+                thumb.innerHTML = `<img src="${product.image}" alt="Thumbnail" referrerpolicy="no-referrer">`;
+                thumbContainer.appendChild(thumb);
+            }
+
+            // Variants
+            if (product.variants && product.variants.length > 0) {
+                document.getElementById('variantSelector').style.display = 'block';
+                document.getElementById('variantLabel').innerText = product.variantLabel;
+                const variantOptions = document.getElementById('variantOptions');
+                variantOptions.innerHTML = '';
+                product.variants.forEach((v, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = `variant-btn ${idx === 0 ? 'active' : ''}`;
+                    btn.innerText = v;
+                    btn.onclick = () => {
+                        document.querySelectorAll('.variant-btn').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                    };
+                    variantOptions.appendChild(btn);
+                });
             }
 
             // Specs
             const specList = document.getElementById('specItems');
             specList.innerHTML = '';
             product.specs.forEach(spec => {
-                const li = document.createElement('li');
-                li.className = 'spec-item';
-                li.innerHTML = `<span class="spec-label">${spec[0]}</span><span>${spec[1]}</span>`;
-                specList.appendChild(li);
+                const card = document.createElement('div');
+                card.className = 'spec-card';
+                card.innerHTML = `
+                    <i data-lucide="${spec.icon}"></i>
+                    <span class="spec-label">${spec.label}</span>
+                    <span class="spec-value">${spec.value}</span>
+                `;
+                specList.appendChild(card);
             });
+
+            // Related Products
+            const relatedGrid = document.getElementById('relatedProductsGrid');
+            relatedGrid.innerHTML = '';
+            Object.values(window.productsData).filter(p => p.id !== product.id).slice(0,4).forEach(related => {
+                const card = document.createElement('a');
+                card.href = `product-details.html?id=${related.id}`;
+                card.className = 'product-card';
+                card.innerHTML = `
+                    <div class="product-image">
+                        <img src="${related.image}" alt="${related.title}" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="product-info">
+                        <span class="brand">${related.brand}</span>
+                        <h3>${related.title}</h3>
+                        <div class="rating">
+                            <i data-lucide="star" fill="#FFB800" color="#FFB800" size="16"></i>
+                            <span>${related.rating} (${related.reviews})</span>
+                        </div>
+                        <div class="price-row">
+                            <span class="price">${formatCurrency(related.price)}</span>
+                        </div>
+                    </div>
+                `;
+                relatedGrid.appendChild(card);
+            });
+            
+            // Wire up Buttons
+            document.getElementById('addToCartBtn').onclick = function() {
+                globalAddToCart(product.id, this);
+            };
+            document.getElementById('addToWishlistBtn').onclick = function() {
+                globalAddToWishlist(product.id, this);
+            };
+            document.getElementById('addToCompareBtn').onclick = function() {
+                globalToggleCompare(product.id, this);
+            };
+            
+            if (window.electroWishlist && window.electroWishlist.includes(product.id)) {
+                const wBtn = document.getElementById('addToWishlistBtn');
+                wBtn.innerHTML = '<i data-lucide="heart" fill="#EF4444" color="#EF4444"></i>';
+            }
+            if (window.electroCompare && window.electroCompare.includes(product.id)) {
+                const cBtn = document.getElementById('addToCompareBtn');
+                cBtn.classList.add('active');
+                cBtn.style.backgroundColor = 'var(--sky-blue)';
+                cBtn.style.color = 'white';
+                cBtn.innerHTML = '<i data-lucide="git-compare" color="white"></i>';
+            }
 
             lucide.createIcons();
         }
@@ -244,4 +293,5 @@
         window.onload = populateDetails;
     </script>
 </body>
+
 </html>
