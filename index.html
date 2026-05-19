@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroCompare | Compare Electronics Smarter</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    <!-- Navbar -->
+    <nav class="navbar glass" id="navbar">
+        <div class="nav-left">
+            <div class="logo">ELECTRO<span>COMPARE</span></div>
+            <div class="nav-links">
+                <a href="index.html" class="nav-item">Home</a>
+                <a href="products.html" class="nav-item">Products</a>
+                <a href="compare.html" class="nav-item">Compare</a>
+                <a href="contact.html" class="nav-item">Contact</a>
+            </div>
+        </div>
+        
+        <div class="search-bar">
+            <i data-lucide="search" size="18"></i>
+            <input type="text" placeholder="Search gadgets, brands...">
+        </div>
+
+        <div class="nav-actions">
+            <a href="wishlist.html" class="nav-item"><i data-lucide="heart"></i></a>
+            <a href="cart.html" class="cart-icon">
+                <i data-lucide="shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <a href="login.html" class="btn btn-outline">Login</a>
+            <a href="register.html" class="btn btn-primary">Join Now</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="slider-wrapper">
+            <div class="slider-container" id="heroSlider">
+                <div class="slide active">
+                    <div class="hero-content">
+                        <h1>Compare <span class="gradient-text">Electronics</span> Smarter</h1>
+                        <p>Find the best deals and detailed specifications for the latest gadgets. Make informed decisions with ElectroCompare.</p>
+                        <div class="hero-btns">
+                            <a href="products.html" class="btn btn-primary">Browse All <i data-lucide="arrow-right" style="margin-left: 8px;"></i></a>
+                            <a href="compare.html" class="btn btn-outline" style="margin-left: 1rem;">Start Comparing <i data-lucide="git-compare" style="margin-left: 8px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper" style="flex: 1.3;">
+                        <img src="https://macfinder.co.uk/wp-content/uploads/2022/12/img-MacBook-Pro-Retina-14-Inch-23934.jpg" alt="MacBook Pro 15" referrerpolicy="no-referrer">
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="hero-content">
+                        <h1>Find The Best Gadgets</h1>
+                        <p>From smartphones to smartwatches, we cover thousands of products with side-by-side comparisons.</p>
+                        <div class="hero-btns">
+                            <a href="products.html" class="btn btn-primary">Shop Now <i data-lucide="shopping-bag" style="margin-left: 8px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper" style="flex: 1.5;">
+                        <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/49-cell-titanium-black-trail-loop-black-ultra?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1724552757277" alt="Watch" referrerpolicy="no-referrer">
+                    </div>
+                </div>
+                <div class="slide">
+                    <div class="hero-content">
+                        <h1>Shop Smarter With Insights</h1>
+                        <p>Read expert reviews and user ratings to get the full picture before you buy.</p>
+                        <div class="hero-btns">
+                            <a href="products.html" class="btn btn-primary">Read Reviews <i data-lucide="star" style="margin-left: 8px;"></i></a>
+                        </div>
+                    </div>
+                    <div class="hero-image-wrapper" style="flex: 1.8;">
+                        <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=1000" alt="Headphones" referrerpolicy="no-referrer">
+                    </div>
+                </div>
+            </div>
+            <!-- Slider Dots -->
+            <div class="slider-dots" id="sliderDots"></div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="section-padding">
+        <div class="section-header fade-in">
+            <h2>Popular Categories</h2>
+            <p>Explore our wide range of electronic gadgets</p>
+        </div>
+        <div class="category-grid fade-in">
+            <div class="category-card">
+                <div class="category-icon-wrapper"><i data-lucide="smartphone"></i></div>
+                <h3>Smartphones</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon-wrapper"><i data-lucide="laptop"></i></div>
+                <h3>Laptops</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon-wrapper"><i data-lucide="headphones"></i></div>
+                <h3>Earbuds</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon-wrapper"><i data-lucide="watch"></i></div>
+                <h3>Smartwatches</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon-wrapper"><i data-lucide="gamepad-2"></i></div>
+                <h3>Gaming</h3>
+            </div>
+            <div class="category-card">
+                <div class="category-icon-wrapper"><i data-lucide="monitor"></i></div>
+                <h3>Monitors</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trending Products -->
+    <section class="section-padding" style="background-color: var(--light-gray); overflow: hidden;">
+        <div class="section-header fade-in">
+            <h2>Trending Gadgets</h2>
+            <p>The most compared and purchased items this week</p>
+        </div>
+        <div class="product-grid">
+            <!-- Sample Product 1 -->
+            <div class="product-card" onclick="window.location.href='product-details.html?id=iphone-16'" style="cursor: pointer;">
+                <div class="product-image">
+                    <img src="https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/iphone-15-pro-max.png" alt="iPhone 15 Pro Max" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Apple</span>
+                    <h3>iPhone 15 Pro Max</h3>
+                    <div class="rating">
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="none" size="14"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">₹1,34,900</span>
+                        <div class="product-actions" style="margin-top:0">
+                            <button class="action-btn btn-compare" title="Add to Compare" onclick="event.stopPropagation();"><i data-lucide="git-compare" size="18"></i></button>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem" onclick="event.stopPropagation();">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Sample Product 2 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.YYS_41HS6y8CsPagVmyF-gHaFl?pid=Api&P=0&h=180" alt="Surface Pro" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Microsoft</span>
+                    <h3>Surface Pro 9</h3>
+                    <div class="rating">
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">₹1,05,900</span>
+                        <div class="product-actions" style="margin-top:0">
+                            <button class="action-btn btn-compare" title="Add to Compare"><i data-lucide="git-compare" size="18"></i></button>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem">Add to Cart</button>
+                </div>
+            </div>
+            <!-- Sample Product 3 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/49-cell-titanium-black-trail-loop-black-ultra?wid=2000&hei=2000&fmt=jpeg&qlt=95&.v=1724552757277" alt="Watch Ultra 2" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Apple</span>
+                    <h3>Watch Ultra 2</h3>
+                    <div class="rating">
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">₹89,900</span>
+                        <div class="product-actions" style="margin-top:0">
+                            <button class="action-btn btn-compare" title="Add to Compare"><i data-lucide="git-compare" size="18"></i></button>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem">Add to Cart</button>
+                </div>
+            </div>
+            <!-- NEW Product 4 -->
+            <div class="product-card" onclick="window.location.href='product-details.html?id=s24-ultra'" style="cursor: pointer;">
+                <div class="product-image">
+                    <img src="https://www.pricerunner.com/product/3037407366/Samsung-Galaxy-S24-Ultra-1TB.jpg" alt="S24 Ultra" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Samsung</span>
+                    <h3>Galaxy S24 Ultra</h3>
+                    <div class="rating">
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">₹1,29,999</span>
+                        <div class="product-actions" style="margin-top:0">
+                            <button class="action-btn btn-compare" title="Add to Compare" onclick="event.stopPropagation();"><i data-lucide="git-compare" size="18"></i></button>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem" onclick="event.stopPropagation();">Add to Cart</button>
+                </div>
+            </div>
+            <!-- NEW Product 5 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24043027/DSCF9466.jpg?quality=90&strip=all&crop=0%2C0%2C100%2C100&w=1920" alt="AirPods Pro 2" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Apple</span>
+                    <h3>AirPods Pro 2</h3>
+                    <div class="rating">
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">₹24,900</span>
+                        <div class="product-actions" style="margin-top:0">
+                            <button class="action-btn btn-compare" title="Add to Compare"><i data-lucide="git-compare" size="18"></i></button>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem">Add to Cart</button>
+                </div>
+            </div>
+            <!-- NEW Product 6 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.K75bGqE5tlwVll1qjOLstQHaEK?pid=Api&P=0&h=180" alt="MacBook" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Apple</span>
+                    <h3>MacBook Air M3</h3>
+                    <div class="rating">
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">₹1,14,900</span>
+                        <div class="product-actions" style="margin-top:0">
+                            <button class="action-btn btn-compare" title="Add to Compare"><i data-lucide="git-compare" size="18"></i></button>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem">Add to Cart</button>
+                </div>
+            </div>
+            <!-- NEW Product 7 -->
+            <div class="product-card" onclick="window.location.href='product-details.html?id=macbook-pro'" style="cursor: pointer;">
+                <div class="product-image">
+                    <img src="https://macfinder.co.uk/wp-content/uploads/2022/12/img-MacBook-Pro-Retina-14-Inch-23934.jpg" alt="MacBook Pro 15" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Apple</span>
+                    <h3>MacBook Pro 15</h3>
+                    <div class="rating">
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">₹1,59,900</span>
+                        <div class="product-actions" style="margin-top:0">
+                            <button class="action-btn btn-compare" title="Add to Compare" onclick="event.stopPropagation();"><i data-lucide="git-compare" size="18"></i></button>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem" onclick="event.stopPropagation();">Add to Cart</button>
+                </div>
+            </div>
+            <!-- NEW Product 8 -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://static1.anpoimages.com/wordpress/wp-content/uploads/2024/10/untitled-design-3.png" alt="Galaxy Watch Ultra" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Samsung</span>
+                    <h3>Galaxy Watch Ultra</h3>
+                    <div class="rating">
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                        <i data-lucide="star" fill="#FFB800" size="14"></i>
+                    </div>
+                    <div class="price-row">
+                        <span class="price">₹44,999</span>
+                        <div class="product-actions" style="margin-top:0">
+                            <button class="action-btn btn-compare" title="Add to Compare"><i data-lucide="git-compare" size="18"></i></button>
+                        </div>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech News Slider -->
+    <section class="section-padding">
+        <div class="section-header fade-in">
+            <h2>Latest Tech Insights</h2>
+            <p>Stay ahead with the newest gadget reviews and news</p>
+        </div>
+        <style>
+            .news-slider { display: flex; gap: 2rem; overflow-x: auto; padding-bottom: 2rem; scrollbar-width: none; -ms-overflow-style: none; }
+            .news-slider::-webkit-scrollbar { display: none; }
+            .news-card { min-width: 350px; background: white; border-radius: 24px; overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid #F1F5F9; transition: all 0.3s ease; }
+            .news-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+            .news-img { height: 200px; background-size: cover; background-position: center; }
+            .news-body { padding: 1.5rem; }
+            .news-tag { color: var(--sky-blue); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.5rem; display: block; }
+            .news-body h4 { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
+        </style>
+        <div class="news-slider fade-in">
+            <div class="news-card">
+                <div class="news-img">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&q=80&w=800" alt="News 1" style="width:100%; height:100%; object-fit:cover;" referrerpolicy="no-referrer">
+                </div>
+                <div class="news-body">
+                    <span class="news-tag">Reviews</span>
+                    <h4>Is the new GPU worth the upgrade?</h4>
+                    <a href="https://bottleneckcalculator.to/en/blog/latest-gen-gpus-are-they-worth-the-upgrade/" target="_blank" style="color: var(--sky-blue); font-weight: 600;">Read More <i data-lucide="arrow-right" size="14"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img">
+                    <img src="https://tse1.mm.bing.net/th/id/OIP.nGMuFHw7fzVhuSEo6gMf4gHaE8?pid=Api&P=0&h=180" alt="News 2" style="width:100%; height:100%; object-fit:cover;" referrerpolicy="no-referrer">
+                </div>
+                <div class="news-body">
+                    <span class="news-tag">Comparison</span>
+                    <h4>Laptop vs Tablet: The 2026 Guide</h4>
+                    <a href="https://thesouthindiatimes.com/tech/tablet-or-laptop-in-2026-choosing-the-right-device-as-budget-deals-flood-the-market/" target="_blank" style="color: var(--sky-blue); font-weight: 600;">Read More <i data-lucide="arrow-right" size="14"></i></a>
+                </div>
+            </div>
+            <div class="news-card">
+                <div class="news-img">
+                    <img src="https://tse3.mm.bing.net/th/id/OIP.rj36rOOvlhrcHC91aFCSCgHaE8?pid=Api&P=0&h=180" alt="News 3" style="width:100%; height:100%; object-fit:cover;" referrerpolicy="no-referrer">
+                </div>
+                <div class="news-body">
+                    <span class="news-tag">Innovation</span>
+                    <h4>The Future of Foldable Screens</h4>
+                    <a href="https://techaeris.com/2026/05/10/foldable-smartphone-market-forecast-2026/" target="_blank" style="color: var(--sky-blue); font-weight: 600;">Read More <i data-lucide="arrow-right" size="14"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo" style="margin-bottom: 1.5rem;">ElectroCompare</div>
+                <p>Your one-stop destination for Comparing, Reviewing, and Buying the latest electronic gadgets. We help you choose the best tech for your needs.</p>
+                <div class="social-links" style="display: flex; gap: 1rem;">
+                    <a href="#"><i data-lucide="facebook"></i></a>
+                    <a href="#"><i data-lucide="twitter"></i></a>
+                    <a href="#"><i data-lucide="instagram"></i></a>
+                    <a href="#"><i data-lucide="linkedin"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 ElectroCompare. All rights reserved. Created for the future of tech comparisons.</p>
+        </div>
+    </footer>
+
+    <script src="/js/slider.js"></script>
+    <script src="/js/script.js"></script>
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

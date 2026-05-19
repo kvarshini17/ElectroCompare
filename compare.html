@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare Products | ElectroCompare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .compare-header {
+            text-align: center;
+            padding: 10rem 5% 4rem;
+            background: var(--soft-blue);
+        }
+
+        .compare-table-container {
+            padding: 4rem 5%;
+            overflow-x: auto;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .compare-table th, .compare-table td {
+            padding: 1.5rem;
+            text-align: center;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .compare-table th {
+            background: var(--light-gray);
+            font-weight: 700;
+            color: var(--dark-text);
+        }
+
+        .spec-label {
+            text-align: left !important;
+            font-weight: 600;
+            color: var(--muted-text);
+            width: 200px;
+        }
+
+        .product-col {
+            min-width: 250px;
+        }
+
+        .product-header img {
+            max-width: 150px;
+            margin-bottom: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        .product-header:hover img {
+            transform: scale(1.05);
+        }
+
+        .better-spec {
+            background-color: #F0FDF4;
+            color: #15803D;
+            font-weight: 700;
+            position: relative;
+        }
+
+        .better-spec::after {
+            content: 'Best';
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 10px;
+            background: #22C55E;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        .remove-btn {
+            color: #EF4444;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            display: inline-block;
+        }
+
+        .add-compare-slot {
+            border: 2px dashed #CBD5E1;
+            border-radius: 12px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            color: var(--muted-text);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .add-compare-slot:hover {
+            border-color: var(--sky-blue);
+            color: var(--sky-blue);
+            background: var(--soft-blue);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar glass scrolled">
+        <a href="index.html" class="logo">ElectroCompare</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="products.html" class="nav-item">Products</a>
+            <a href="compare.html" class="nav-item" style="color: var(--sky-blue)">Compare</a>
+        </div>
+        <div class="nav-actions">
+            <a href="cart.html" class="cart-icon">
+                <i data-lucide="shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+    </nav>
+
+    <header class="compare-header">
+        <h1>Product Comparison</h1>
+        <p>Analyze technical specifications side-by-side to find your perfect match.</p>
+    </header>
+
+    <main class="compare-table-container">
+        <table class="compare-table">
+            <thead>
+                <tr>
+                    <th class="spec-label">Feature</th>
+                    <th class="product-col">
+                        <div class="product-header">
+                            <img src="https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/iphone-15-pro-max.png" alt="iPhone 15 Pro" referrerpolicy="no-referrer">
+                            <h3>iPhone 15 Pro</h3>
+                            <span class="remove-btn">Remove</span>
+                        </div>
+                    </th>
+                    <th class="product-col">
+                        <div class="product-header">
+                            <img src="https://www.pricerunner.com/product/3037407366/Samsung-Galaxy-S24-Ultra-1TB.jpg" alt="S24 Ultra" referrerpolicy="no-referrer">
+                            <h3>Galaxy S24 Ultra</h3>
+                            <span class="remove-btn">Remove</span>
+                        </div>
+                    </th>
+                    <th class="product-col">
+                        <div class="add-compare-slot">
+                            <i data-lucide="plus-circle" size="32"></i>
+                            <span>Add Product</span>
+                        </div>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="spec-label">Price</td>
+                    <td>₹1,34,900</td>
+                    <td class="better-spec">₹1,29,999</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="spec-label">Processor</td>
+                    <td class="better-spec">A17 Pro Chip</td>
+                    <td>Snapdragon 8 Gen 3</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="spec-label">RAM</td>
+                    <td>8GB</td>
+                    <td class="better-spec">12GB</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="spec-label">Storage</td>
+                    <td>Up to 1TB</td>
+                    <td>Up to 1TB</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="spec-label">Display</td>
+                    <td>6.1" OLED</td>
+                    <td class="better-spec">6.8" AMOLED</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="spec-label">Battery</td>
+                    <td>3274 mAh</td>
+                    <td class="better-spec">5000 mAh</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="spec-label">Camera</td>
+                    <td>48MP Main</td>
+                    <td class="better-spec">200MP Main</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="spec-label">Rating</td>
+                    <td>4.8 / 5</td>
+                    <td>4.7 / 5</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td class="spec-label">Action</td>
+                    <td><button class="btn btn-primary">Buy Now</button></td>
+                    <td><button class="btn btn-primary">Buy Now</button></td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <script src="/js/script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>

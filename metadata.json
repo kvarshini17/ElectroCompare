@@ -1,0 +1,6 @@
+{
+  "name": "ElectroCompare",
+  "description": "A premium electronics comparison and e-commerce platform with a modern light-theme aesthetic, featuring side-by-side product comparisons, wishlist, and cart functionality.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

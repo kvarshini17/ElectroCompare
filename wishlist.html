@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | ElectroCompare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <nav class="navbar glass scrolled">
+        <a href="index.html" class="logo">ElectroCompare</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="products.html" class="nav-item">Products</a>
+        </div>
+        <div class="nav-actions">
+            <a href="wishlist.html" class="nav-item" style="color: var(--sky-blue)"><i data-lucide="heart"></i></a>
+            <a href="cart.html" class="cart-icon">
+                <i data-lucide="shopping-cart"></i>
+                <span class="cart-count">0</span>
+            </a>
+            <a href="login.html" class="btn btn-primary">Login</a>
+        </div>
+    </nav>
+
+    <div class="section-padding" style="padding-top: 10rem; min-height: 80vh;">
+        <div class="section-header">
+            <h2>Your Wishlist</h2>
+            <p>Save your favorite gadgets and get notified when prices drop.</p>
+        </div>
+
+        <div class="product-grid">
+            <!-- Sample Wishlist Item -->
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1618366712010-f4ae9c647dcb?auto=format&fit=crop&q=80&w=800" alt="Headphones" referrerpolicy="no-referrer">
+                </div>
+                <div class="product-info">
+                    <span class="brand">Sony</span>
+                    <h3>WH-1000XM5</h3>
+                    <div class="price-row">
+                        <span class="price">₹29,990</span>
+                        <button class="action-btn" style="color: #EF4444;"><i data-lucide="trash-2" size="18"></i></button>
+                    </div>
+                    <button class="action-btn btn-cart" style="width:100%; margin-top:1rem">Move to Cart</button>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 5rem;">
+            <a href="products.html" class="btn btn-outline">Explore More Gadgets</a>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

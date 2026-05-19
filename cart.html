@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart | ElectroCompare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .cart-page {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 3rem;
+            padding-top: 10rem;
+        }
+
+        .cart-items {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .cart-item:last-child { border-bottom: none; }
+
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            background: var(--light-gray);
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .item-info { flex: 1; }
+        .item-info h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
+        .item-info p { color: var(--muted-text); font-size: 0.9rem; }
+
+        .item-quantity {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--light-gray);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+
+        .qty-btn { cursor: pointer; border: none; background: transparent; font-weight: bold; }
+
+        .item-price { font-weight: 700; font-size: 1.1rem; width: 100px; text-align: right; }
+
+        .cart-summary {
+            background: white;
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: var(--shadow-soft);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: var(--muted-text);
+        }
+
+        .summary-total {
+            border-top: 1px solid #F1F5F9;
+            padding-top: 1.5rem;
+            margin-top: 1.5rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--dark-text);
+        }
+
+        @media (max-width: 992px) {
+            .cart-page { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar glass scrolled">
+        <a href="index.html" class="logo">ElectroCompare</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-item">Home</a>
+            <a href="products.html" class="nav-item">Products</a>
+        </div>
+        <div class="nav-actions">
+            <a href="cart.html" class="cart-icon" style="color: var(--sky-blue)">
+                <i data-lucide="shopping-cart"></i>
+                <span class="cart-count">2</span>
+            </a>
+            <a href="login.html" class="btn btn-primary">Account</a>
+        </div>
+    </nav>
+
+    <div class="section-padding cart-page">
+        <div class="cart-items">
+            <h3>Your Shopping Cart (2 items)</h3>
+            
+            <div class="cart-item">
+                <img src="https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/iphone-15-pro-max.png" alt="Item" referrerpolicy="no-referrer">
+                <div class="item-info">
+                    <h4>iPhone 15 Pro</h4>
+                    <p>Natural Titanium, 256GB</p>
+                    <span style="color: #EF4444; font-size: 0.8rem; cursor: pointer;">Remove</span>
+                </div>
+                <div class="item-quantity">
+                    <button class="qty-btn">-</button>
+                    <span>1</span>
+                    <button class="qty-btn">+</button>
+                </div>
+                <div class="item-price">₹1,34,900</div>
+            </div>
+
+            <div class="cart-item">
+                <img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&q=80&w=600" alt="Item" referrerpolicy="no-referrer">
+                <div class="item-info">
+                    <h4>XPS 15 Premium</h4>
+                    <p>Intel Core i9, 32GB RAM</p>
+                    <span style="color: #EF4444; font-size: 0.8rem; cursor: pointer;">Remove</span>
+                </div>
+                <div class="item-quantity">
+                    <button class="qty-btn">-</button>
+                    <span>1</span>
+                    <button class="qty-btn">+</button>
+                </div>
+                <div class="item-price">₹1,44,900</div>
+            </div>
+            
+            <div style="margin-top: 2rem;">
+                <a href="products.html" style="display: flex; align-items: center; gap: 0.5rem; color: var(--sky-blue); font-weight: 500;">
+                    <i data-lucide="arrow-left" size="18"></i> Continue Shopping
+                </a>
+            </div>
+        </div>
+
+        <div class="cart-summary">
+            <h3>Order Summary</h3>
+            <div style="margin-top: 2rem;">
+                <div class="summary-row">
+                    <span>Subtotal</span>
+                    <span>₹2,79,800</span>
+                </div>
+                <div class="summary-row">
+                    <span>Shipping</span>
+                    <span>Free</span>
+                </div>
+                <div class="summary-row">
+                    <span>Tax (Est. 12%)</span>
+                    <span>₹33,576</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span>₹3,13,376</span>
+                </div>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 2rem; padding: 1.2rem;">Proceed to Checkout</button>
+                
+                <div style="margin-top: 2rem; display: flex; align-items: center; justify-content: center; gap: 1rem; opacity: 0.5;">
+                    <i data-lucide="shield-check"></i>
+                    <span style="font-size: 0.8rem;">Secure SSL Encryption</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/script.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - TechCompare</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        .details-container {
+            max-width: 1200px;
+            margin: 100px auto 50px;
+            padding: 0 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+        @media (max-width: 768px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        .product-gallery img {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .spec-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .spec-label {
+            font-weight: 600;
+            color: #666;
+        }
+        .price-large {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 20px 0;
+        }
+        .action-bars {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i data-lucide="cpu"></i>
+                <span>TechCompare</span>
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="compare.html">Compare</a>
+                <a href="reviews.html">Reviews</a>
+            </div>
+            <div class="nav-actions">
+                <button class="nav-btn"><i data-lucide="search"></i></button>
+                <button class="nav-btn"><i data-lucide="user"></i></button>
+                <button class="nav-btn cart-toggle"><i data-lucide="shopping-cart"></i><span class="cart-count">0</span></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="details-container">
+        <div class="product-grid">
+            <div class="product-gallery" id="productGallery">
+                <img id="mainImage" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&q=80&w=1000" alt="Product" referrerpolicy="no-referrer">
+            </div>
+            <div class="product-content">
+                <span class="brand" id="productBrand" style="text-transform: uppercase; color: #666; letter-spacing: 1px; font-weight: 600;">Brand</span>
+                <h1 id="productTitle" style="font-size: 2.5rem; margin: 10px 0;">Product Name</h1>
+                <div class="rating" style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                    <div id="productStars" style="display: flex; gap: 2px;"></div>
+                    <span id="reviewCount" style="color: #666;">(0 reviews)</span>
+                </div>
+                <div class="price-large" id="productPrice">₹0</div>
+                <p id="productDescription" style="line-height: 1.6; color: #444; margin-bottom: 30px;">
+                    Experience the next level of performance with cutting-edge technology and premium design features crafted for the modern era.
+                </p>
+                
+                <div class="action-bars">
+                    <button class="btn btn-primary" style="flex: 2; padding: 15px;">Add to Cart <i data-lucide="shopping-cart" style="margin-left: 10px;"></i></button>
+                    <button class="btn btn-outline" style="flex: 1; padding: 15px;"><i data-lucide="heart"></i></button>
+                    <button class="btn btn-outline" style="flex: 1; padding: 15px;"><i data-lucide="git-compare"></i></button>
+                </div>
+
+                <div class="specs" style="margin-top: 40px;">
+                    <h3>Specifications</h3>
+                    <ul class="spec-list">
+                        <div id="specItems">
+                            <li class="spec-item"><span class="spec-label">Processor</span><span>Intel Core i9 13th Gen</span></li>
+                            <li class="spec-item"><span class="spec-label">Memory</span><span>32GB LPDDR5X</span></li>
+                            <li class="spec-item"><span class="spec-label">Storage</span><span>1TB SSD NVMe</span></li>
+                            <li class="spec-item"><span class="spec-label">Display</span><span>14.2" Liquid Retina XDR</span></li>
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="logo" style="color: white">
+                        <i data-lucide="cpu"></i>
+                        <span>TechCompare</span>
+                    </div>
+                    <p style="margin-top: 1rem; color: #999">The ultimate destination for comparing and reviewing the latest tech gadgets.</p>
+                </div>
+                <div>
+                    <h4>Explore</h4>
+                    <ul style="list-style: none; padding: 0; color: #999">
+                        <li>Laptops</li>
+                        <li>Smartphones</li>
+                        <li>Watches</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul style="list-style: none; padding: 0; color: #999">
+                        <li>About Us</li>
+                        <li>Contact</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Newsletter</h4>
+                    <div style="display: flex; margin-top: 1rem">
+                        <input type="email" placeholder="Email" style="padding: 0.5rem; border-radius: 4px 0 0 4px; border: none">
+                        <button class="btn-primary" style="padding: 0.5rem 1rem; border-radius: 0 4px 4px 0">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // Sample Data Store
+        const productsData = {
+            "macbook-pro": {
+                title: "MacBook Pro 15",
+                brand: "Apple",
+                price: "₹1,59,900",
+                image: "https://macfinder.co.uk/wp-content/uploads/2022/12/img-MacBook-Pro-Retina-14-Inch-23934.jpg",
+                rating: 5,
+                reviews: 230,
+                description: "The M3 Max chip brings next-level performance to power through the most demanding workflows with up to 12.8x faster performance than Intel-based models.",
+                specs: [
+                    ["Processor", "Apple M3 Max"],
+                    ["Memory", "36GB Unified Memory"],
+                    ["Storage", "1TB SSD"],
+                    ["Display", "14.2-inch Liquid Retina XDR"]
+                ]
+            },
+            "iphone-16": {
+                title: "iPhone 16 Pro Max",
+                brand: "Apple",
+                price: "₹1,44,900",
+                image: "https://tse2.mm.bing.net/th/id/OIP.oNfJ_2c-Iu7-k_C6V2pLhAHaEK?pid=Api&P=0&h=180",
+                rating: 5,
+                reviews: 156,
+                description: "Built for Apple Intelligence. Titaniuim design. 48MP Fusion camera. And the A18 Pro chip.",
+                specs: [
+                    ["Processor", "A18 Pro Chip"],
+                    ["Camera", "48MP Main | 12MP Telephoto"],
+                    ["Display", "6.7-inch Super Retina XDR"],
+                    ["Battery", "Up to 29 hours video playback"]
+                ]
+            },
+            "s24-ultra": {
+                title: "Galaxy S24 Ultra",
+                brand: "Samsung",
+                price: "₹1,29,999",
+                image: "https://tse3.mm.bing.net/th/id/OIP.YYS_41HS6y8CsPagVmyF-gHaFl?pid=Api&P=0&h=180",
+                rating: 4,
+                reviews: 189,
+                description: "Galaxy AI is here. Welcome to the era of mobile AI. With S24 Ultra in your hands, you can unleash whole new levels of creativity.",
+                specs: [
+                    ["Processor", "Snapdragon 8 Gen 3"],
+                    ["RAM", "12GB"],
+                    ["Camera", "200MP Main Lens"],
+                    ["Display", "6.8-inch Dynamic AMOLED 2X"]
+                ]
+            }
+        };
+
+        // Populate page based on URL
+        function populateDetails() {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id') || 'macbook-pro';
+            const product = productsData[productId] || productsData['macbook-pro'];
+
+            document.getElementById('productTitle').innerText = product.title;
+            document.getElementById('productBrand').innerText = product.brand;
+            document.getElementById('productPrice').innerText = product.price;
+            document.getElementById('mainImage').src = product.image;
+            document.getElementById('productDescription').innerText = product.description;
+            document.getElementById('reviewCount').innerText = `(${product.reviews} reviews)`;
+
+            // Stars
+            const starContainer = document.getElementById('productStars');
+            starContainer.innerHTML = '';
+            for (let i = 0; i < 5; i++) {
+                const star = document.createElement('i');
+                star.setAttribute('data-lucide', 'star');
+                star.setAttribute('fill', i < product.rating ? '#FFB800' : 'none');
+                star.setAttribute('color', '#FFB800');
+                star.setAttribute('size', '18');
+                starContainer.appendChild(star);
+            }
+
+            // Specs
+            const specList = document.getElementById('specItems');
+            specList.innerHTML = '';
+            product.specs.forEach(spec => {
+                const li = document.createElement('li');
+                li.className = 'spec-item';
+                li.innerHTML = `<span class="spec-label">${spec[0]}</span><span>${spec[1]}</span>`;
+                specList.appendChild(li);
+            });
+
+            lucide.createIcons();
+        }
+
+        window.onload = populateDetails;
+    </script>
+</body>
+</html>

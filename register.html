@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | ElectroCompare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .auth-image {
+            flex: 1.2;
+            background: linear-gradient(135deg, #22D3EE 0%, #60A5FA 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 4rem;
+            text-align: center;
+        }
+
+        .auth-image h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .auth-form-side {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--white);
+            padding: 4rem;
+        }
+
+        .auth-box {
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .auth-box h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 500;
+            color: var(--muted-text);
+            font-size: 0.85rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--muted-text);
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 0.7rem 1rem 0.7rem 3rem;
+            border-radius: 10px;
+            border: 1px solid #E2E8F0;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .input-wrapper input:focus {
+            border-color: var(--sky-blue);
+        }
+
+        .auth-footer {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: var(--muted-text);
+            font-size: 0.9rem;
+        }
+
+        .auth-footer a {
+            color: var(--sky-blue);
+            font-weight: 600;
+        }
+
+        @media (max-width: 992px) {
+            .auth-image { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-image">
+            <div data-lucide="zap" size="100" style="margin-bottom: 2rem;"></div>
+            <h2>Join the Tech Elite</h2>
+            <p>Get personalized comparisons, price drop notifications, and weekly tech newsletters.</p>
+        </div>
+        <div class="auth-form-side">
+            <div class="auth-box">
+                <a href="index.html" class="logo" style="display:inline-block; margin-bottom: 1.5rem;">ElectroCompare</a>
+                <h3>Create Account</h3>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="user" size="18"></i>
+                            <input type="text" placeholder="John Doe" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="mail" size="18"></i>
+                            <input type="email" placeholder="john@example.com" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="lock" size="18"></i>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <div class="input-wrapper">
+                            <i data-lucide="check-circle" size="18"></i>
+                            <input type="password" placeholder="••••••••" required>
+                        </div>
+                    </div>
+                    <div style="margin-bottom: 1.5rem; font-size: 0.85rem;">
+                        <input type="checkbox" id="terms" required>
+                        <label for="terms" style="display:inline; color: var(--muted-text);">I agree to the <a href="#" style="color: var(--sky-blue);">Terms & Conditions</a></label>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Create Account</button>
+                </form>
+                <div class="auth-footer">
+                    Already have an account? <a href="login.html">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
